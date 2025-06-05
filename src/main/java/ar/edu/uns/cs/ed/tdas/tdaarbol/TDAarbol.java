@@ -74,4 +74,10 @@ public Iterable<Position<E>> children(Position<E> v){
     }
     return resultado;
 }
+public boolean isExternal(Position<E> e){
+    TNodo<E> nodo = checkPosition(e);
+    boolean toRet= (nodo.getHijos()).isEmpty();
+    return toRet;
+}
+
 }

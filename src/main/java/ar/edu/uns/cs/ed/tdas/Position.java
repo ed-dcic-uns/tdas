@@ -11,7 +11,5 @@ public interface Position<E> {
 	 * @return El elemento en la posición
 	 */
 	public E element();
-
-    public Position<E>[] getHijos();
 	
 }

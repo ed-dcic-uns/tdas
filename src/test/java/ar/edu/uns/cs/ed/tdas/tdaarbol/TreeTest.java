@@ -1,5 +1,5 @@
 
-package ar.edu.uns.cs.ed.tdas.tdaarbol;
+package ar.edu.uns.cs.ed.tdas.tdaTDAarbol;
 import static org.junit.Assert.*;
 
 
@@ -23,7 +23,7 @@ public class TreeTest {
 	 * Inicializa el árbol antes de cada test individual
 	 */
 	private Tree<Integer> getTree() {
-		return new Arbol<Integer>();
+		return new TDAarbol<Integer>();
 	}
 
 	@Before
@@ -35,7 +35,7 @@ public class TreeTest {
 	public void size() {
 		Position<Integer> h1, h2, h3, h4;
 		h1 = h2 = h3 = h4 = null;
-		// Caso_de_prueba: Arbol Vacío.
+		// Caso_de_prueba: TDAarbol Vacío.
 		assertTrue("Tamaño del árbol justo después de ser creado != 0",
 				T.size() == 0);
 		// Caso_de_prueba: Solo raíz.
@@ -111,7 +111,7 @@ public class TreeTest {
 	public void isEmpty() {
 		Position<Integer> h1, h2, h3, h4;
 		h1 = h2 = h3 = h4 = null;
-		// Caso_de_prueba: Arbol Vacío.
+		// Caso_de_prueba: TDAarbol Vacío.
 		assertTrue("El árbol justo después de ser creado no está vacío",
 				T.isEmpty());
 		// Caso_de_prueba: Solo raíz.
@@ -187,10 +187,10 @@ public class TreeTest {
 	public void iterator() {
 		Iterator<Integer> it;
 		int i = 1;
-		// Caso_De_Prueba: Arbol vacío.
+		// Caso_De_Prueba: TDAarbol vacío.
 		it = T.iterator();
 		assertTrue("El iterador debe estar vacío", it.hasNext() == false);
-		// Caso_De_Prueba: Arbol con un solo elemento.
+		// Caso_De_Prueba: TDAarbol con un solo elemento.
 		try {
 			T.createRoot(1);
 			it = T.iterator();
@@ -201,9 +201,9 @@ public class TreeTest {
 		assertTrue("El iterador no funciona correctamente", it.next().equals(1));
 		assertTrue("El iterador debe estar vacío", it.hasNext() == false);
 
-		// Caso_De_Prueba: Arbol con mas de un elemento
+		// Caso_De_Prueba: TDAarbol con mas de un elemento
 		T = getTree();
-		cargarArbol(T);
+		cargarTDAarbol(T);
 		it = T.iterator();
 		while (it.hasNext()) {
 			assertTrue("El iterador no funciona correctamente", it.next()
@@ -217,10 +217,10 @@ public class TreeTest {
 	public void positions() {
 		Iterator<Position<Integer>> it;
 		int i = 1;
-		// Caso_De_Prueba: Arbol vacío.
+		// Caso_De_Prueba: TDAarbol vacío.
 		it = T.positions().iterator();
 		assertTrue("El iterador debe estar vacío", it.hasNext() == false);
-		// Caso_De_Prueba: Arbol con un solo elemento.
+		// Caso_De_Prueba: TDAarbol con un solo elemento.
 		try {
 			T.createRoot(1);
 			it = T.positions().iterator();
@@ -232,9 +232,9 @@ public class TreeTest {
 				.equals(1));
 		assertTrue("El iterador debe estar vacío", it.hasNext() == false);
 
-		// Caso_De_Prueba: Arbol con mas de un elemento
+		// Caso_De_Prueba: TDAarbol con mas de un elemento
 		T = getTree();
-		cargarArbol(T);
+		cargarTDAarbol(T);
 		it = T.positions().iterator();
 		while (it.hasNext()) {
 			assertTrue("El iterador no funciona correctamente", it.next()
@@ -255,7 +255,7 @@ public class TreeTest {
 			fail("Replace() debería lanzar la excepción InvalidPositionException con una posición Inválida");
 		} catch (InvalidPositionException e) {
 		}
-		// Arbol con 1 solo elemento
+		// TDAarbol con 1 solo elemento
 		try {
 			T.createRoot(1);
 			T.replace(T.root(), 2);
@@ -269,21 +269,21 @@ public class TreeTest {
 		} catch (EmptyTreeException e) {
 			fail("root() no debería lanzar EmptyTreeException con un árbol con elementos");
 		}
-		// Arbol con varios elementos
+		// TDAarbol con varios elementos
 		T = getTree();
-		cargarArbol(T);
+		cargarTDAarbol(T);
 		// nodo interno
 		try {
 			hijos = T.children(T.root()).iterator();
 			// nodo hoja
 			h1 = hijos.next();
-			assertTrue("Arbol mal armado", h1.element().equals(2));
+			assertTrue("TDAarbol mal armado", h1.element().equals(2));
 			T.replace(h1, 10);
 			assertTrue("Replace no funciona correctamente", h1.element()
 					.equals(10));
 			// Nodo interno
 			h1 = hijos.next();
-			assertTrue("Arbol mal armado", h1.element().equals(3));
+			assertTrue("TDAarbol mal armado", h1.element().equals(3));
 			T.replace(h1, 10);
 			assertTrue("Replace no funciona correctamente", h1.element()
 					.equals(10));
@@ -297,13 +297,13 @@ public class TreeTest {
 
 	@Test
 	public void root() {
-		// Arbol Vacio
+		// TDAarbol Vacio
 		try {
 			T.root();
 			fail("root() debería haber lanzado la excepción EmptyTreeException con un árbol vacío");
 		} catch (EmptyTreeException e) {
 		}
-		// Arbol 1 elemento
+		// TDAarbol 1 elemento
 		try {
 			T.createRoot(1);
 			assertTrue(
@@ -314,9 +314,9 @@ public class TreeTest {
 		} catch (EmptyTreeException e) {
 			fail("root() no debería lanzar EmptyTreeException con un árbol con elementos");
 		}
-		// Arbol con mas de 1 elemento
+		// TDAarbol con mas de 1 elemento
 		T = getTree();
-		cargarArbol(T);
+		cargarTDAarbol(T);
 		try {
 			assertTrue(
 					"root() no funciona correctamente para un árbol con muchos solo elementos.",
@@ -338,7 +338,7 @@ public class TreeTest {
 		}
 		// raíz
 		T = getTree();
-		cargarArbol(T);
+		cargarTDAarbol(T);
 
 		try {
 			T.parent(T.root());
@@ -366,7 +366,7 @@ public class TreeTest {
 			fail("children() debería lanzar la excepción InvalidPositionException con una posición Inválida");
 		} catch (InvalidPositionException e) {
 		}
-		// Arbol con 1 solo elemento
+		// TDAarbol con 1 solo elemento
 		try {
 			T.createRoot(1);
 			hijos = T.children(T.root()).iterator();
@@ -380,10 +380,10 @@ public class TreeTest {
 		} catch (EmptyTreeException e) {
 			fail("root() no debería lanzar EmptyTreeException con un árbol con elementos");
 		}
-		// Arbol con varios elementos
+		// TDAarbol con varios elementos
 		T = getTree();
 		hijos = null;
-		cargarArbol2(T);
+		cargarTDAarbol2(T);
 		// chequearHijosNiveles();
 		Position<Integer> p;
 		int i = 1;
@@ -436,7 +436,7 @@ public class TreeTest {
 
 	@Test
 	public void isInternalExternal() {
-		cargarArbol(T);
+		cargarTDAarbol(T);
 		Position<Integer> p;
 		Iterator<Position<Integer>> hijos = null;
 		Queue<Position<Integer>> cola = new ArrayQueue<Position<Integer>>();
@@ -499,7 +499,7 @@ public class TreeTest {
 
 	@Test
 	public void isroot() {
-		cargarArbol(T);
+		cargarTDAarbol(T);
 		Position<Integer> p = null;
 		Iterator<Position<Integer>> hijos = null;
 		Queue<Position<Integer>> cola = new ArrayQueue<Position<Integer>>();
@@ -771,7 +771,7 @@ public class TreeTest {
 
 			fail("addFirstChild() no debería lanzar una excepción InvalidOperationException para un árbol vacío");
 		} catch (EmptyTreeException e) {
-			fail("root() no debería lanzar una excepcion EmptyTreeException en un arbol no vacío");
+			fail("root() no debería lanzar una excepcion EmptyTreeException en un TDAarbol no vacío");
 		}
 		try {
 
@@ -882,7 +882,7 @@ public class TreeTest {
 
 			fail("addFirstChild() no debería lanzar una excepción InvalidOperationException para un árbol vacío");
 		} catch (EmptyTreeException e) {
-			fail("root() no debería lanzar una excepcion EmptyTreeException en un arbol no vacío");
+			fail("root() no debería lanzar una excepcion EmptyTreeException en un TDAarbol no vacío");
 		}
 
 		try {
@@ -905,7 +905,7 @@ public class TreeTest {
 
 			fail("addFirstChild() no debería lanzar una excepción InvalidOperationException para un árbol vacío");
 		} catch (EmptyTreeException e) {
-			fail("root() no debería lanzar una excepcion EmptyTreeException en un arbol no vacío");
+			fail("root() no debería lanzar una excepcion EmptyTreeException en un TDAarbol no vacío");
 		}
 		try {
 			T.addAfter(padre, h1, 4);
@@ -1062,7 +1062,7 @@ public class TreeTest {
 		Iterator<Position<Integer>> it;
 		boolean paso = false;
 		int i = 0;
-		// Arbol vacío
+		// TDAarbol vacío
 		try {
 			T.createRoot(1);
 			nodo = T.root();
@@ -1077,7 +1077,7 @@ public class TreeTest {
 		}
 		// Raiz con hijos
 		try {
-			cargarArbol(T);
+			cargarTDAarbol(T);
 			i = T.size();
 			T.removeInternalNode(T.root());
 			fail("removeInternalNode() debería lanzar una excepción InvalidPositionException cuando su argumento es la raiz con hijos ");
@@ -1090,7 +1090,7 @@ public class TreeTest {
 		}
 		// Raíz con 1 solo hijo
 		T = getTree();
-		cargarArbol3(T);
+		cargarTDAarbol3(T);
 		Position<Integer> raiz=null, hijo=null;
 		try{
 		raiz=T.root();
@@ -1118,7 +1118,7 @@ public class TreeTest {
 		}
 		// Nodo interno.
 		T = getTree();
-		cargarArbol2(T);
+		cargarTDAarbol2(T);
 		// Intento eliminar la raiz
 		try {
 			T.removeInternalNode(T.root());
@@ -1218,7 +1218,7 @@ public class TreeTest {
 
 	@Test
 	public void remove() {
-		// Arbol vacío
+		// TDAarbol vacío
 		PositionList<Position<Integer>> lista;
 		Position<Integer> pos, nodo;
 		Iterator<Position<Integer>> it;
@@ -1237,7 +1237,7 @@ public class TreeTest {
 		}
 		// Raiz con hijos
 		try {
-			cargarArbol(T);
+			cargarTDAarbol(T);
 			i = T.size();
 			T.removeNode(T.root());
 			fail("removeNode() debería lanzar una excepción InvalidPositionException cuando su argumento es la raiz con hijos ");
@@ -1264,7 +1264,7 @@ public class TreeTest {
 		// Elimino todos los nodos del nivel 1
 
 		T = getTree();
-		cargarArbol2(T);
+		cargarTDAarbol2(T);
 		lista = new ListaDoblementeEnlazada<Position<Integer>>();
 		try {
 			nodosEnNivel(T.root(), 1, 1, lista);
@@ -1332,22 +1332,22 @@ public class TreeTest {
 
 	}
 
-	private void cargarArbol(Tree<Integer> Arbol) {
+	private void cargarTDAarbol(Tree<Integer> TDAarbol) {
 		Position<Integer> h1, h2, h3, h4, h5;
 		h1 = h2 = h3 = h4 = h5 = null;
 		try {
-			Arbol.createRoot(1);
-			h1 = Arbol.addFirstChild(Arbol.root(), 2);
-			h1 = Arbol.addAfter(Arbol.root(), h1, 3);
-			h2 = Arbol.addAfter(Arbol.root(), h1, 6);
-			h3 = Arbol.addAfter(Arbol.root(), h2, 9);
-			Arbol.addFirstChild(h1, 4);
-			Arbol.addLastChild(h1, 5);
-			h4 = Arbol.addFirstChild(h2, 7);
-			Arbol.addFirstChild(h4, 8);
-			Arbol.addFirstChild(h3, 10);
-			h5 = Arbol.addLastChild(h3, 11);
-			Arbol.addFirstChild(h5, 12);
+			TDAarbol.createRoot(1);
+			h1 = TDAarbol.addFirstChild(TDAarbol.root(), 2);
+			h1 = TDAarbol.addAfter(TDAarbol.root(), h1, 3);
+			h2 = TDAarbol.addAfter(TDAarbol.root(), h1, 6);
+			h3 = TDAarbol.addAfter(TDAarbol.root(), h2, 9);
+			TDAarbol.addFirstChild(h1, 4);
+			TDAarbol.addLastChild(h1, 5);
+			h4 = TDAarbol.addFirstChild(h2, 7);
+			TDAarbol.addFirstChild(h4, 8);
+			TDAarbol.addFirstChild(h3, 10);
+			h5 = TDAarbol.addLastChild(h3, 11);
+			TDAarbol.addFirstChild(h5, 12);
 
 		} catch (InvalidPositionException e) {
 			fail("Al invocar addFirstChild(), addLastChild() o addAfter() con una posición válida lanza la excepción InvalidPositionException");
@@ -1359,13 +1359,13 @@ public class TreeTest {
 
 	}	
 	
-	private void cargarArbol3(Tree<Integer> Arbol) {
+	private void cargarTDAarbol3(Tree<Integer> TDAarbol) {
 		Position<Integer> h1;
 		h1 = null;
 		try {
-			Arbol.createRoot(1);
-			h1 = Arbol.addFirstChild(Arbol.root(), 2);
-			Arbol.addFirstChild(h1, 6);
+			TDAarbol.createRoot(1);
+			h1 = TDAarbol.addFirstChild(TDAarbol.root(), 2);
+			TDAarbol.addFirstChild(h1, 6);
 		
 		} catch (InvalidPositionException e) {
 			fail("Al invocar addFirstChild(), addLastChild() o addAfter() con una posición válida lanza la excepción InvalidPositionException");
@@ -1377,22 +1377,22 @@ public class TreeTest {
 
 	}
 
-	private void cargarArbol2(Tree<Integer> Arbol) {
+	private void cargarTDAarbol2(Tree<Integer> TDAarbol) {
 		Position<Integer> h1, h2, h3, h4, h5;
 		h1 = h2 = h3 = h4 = h5 = null;
 		try {
-			Arbol.createRoot(1);
-			h1 = Arbol.addFirstChild(Arbol.root(), 2);
-			h1 = Arbol.addAfter(Arbol.root(), h1, 3);
-			h2 = Arbol.addAfter(Arbol.root(), h1, 4);
-			h3 = Arbol.addAfter(Arbol.root(), h2, 5);
-			Arbol.addFirstChild(h1, 6);
-			Arbol.addLastChild(h1, 7);
-			h4 = Arbol.addFirstChild(h2, 8);
-			Arbol.addFirstChild(h4, 11);
-			Arbol.addFirstChild(h3, 9);
-			h5 = Arbol.addLastChild(h3, 10);
-			Arbol.addFirstChild(h5, 12);
+			TDAarbol.createRoot(1);
+			h1 = TDAarbol.addFirstChild(TDAarbol.root(), 2);
+			h1 = TDAarbol.addAfter(TDAarbol.root(), h1, 3);
+			h2 = TDAarbol.addAfter(TDAarbol.root(), h1, 4);
+			h3 = TDAarbol.addAfter(TDAarbol.root(), h2, 5);
+			TDAarbol.addFirstChild(h1, 6);
+			TDAarbol.addLastChild(h1, 7);
+			h4 = TDAarbol.addFirstChild(h2, 8);
+			TDAarbol.addFirstChild(h4, 11);
+			TDAarbol.addFirstChild(h3, 9);
+			h5 = TDAarbol.addLastChild(h3, 10);
+			TDAarbol.addFirstChild(h5, 12);
 
 		} catch (InvalidPositionException e) {
 			fail("Al invocar addFirstChild(), addLastChild() o addAfter() con una posición válida lanza la excepción InvalidPositionException");

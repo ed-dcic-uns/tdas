@@ -48,7 +48,7 @@ private int hash(K key){
 }
 public Iterable<Entry<K,V>> findAll(K key){
     ListaDoblementeEnlazada<Entry<K,V>> resultado = new ListaDoblementeEnlazada<>();
-    if(key == null){throw new InvalidKeyException("LLvme incorrecta");}
+    if(key == null){throw new InvalidKeyException("LLevame incorrecta");}
     else{
         for(int i=0;i<cubetas;i++){
             for(Entry<K,V> k : arreglo[i]){

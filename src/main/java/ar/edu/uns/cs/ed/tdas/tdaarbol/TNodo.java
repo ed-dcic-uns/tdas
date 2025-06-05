@@ -1,3 +1,5 @@
+package ar.edu.uns.cs.ed.tdas.tdaarbol;
+
 import TDALISTA.ListaDoblementeEnlazada;
 import ar.edu.uns.cs.ed.tdas.Position;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
@@ -34,6 +36,7 @@ public class TNodo<E> implements Position<E>{
 	}
 	
 	/**
+	 * @return 
 	 * @return lista de hijos del nodo actual.
 	 */
 	public PositionList<TNodo<E>> getHijos(){
