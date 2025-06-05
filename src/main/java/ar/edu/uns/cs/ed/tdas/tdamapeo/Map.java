@@ -1,7 +1,5 @@
 package ar.edu.uns.cs.ed.tdas.tdamapeo;
 
-import ar.edu.uns.cs.ed.tdas.Entry;
-
 /**
  * Interface Map
  * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.

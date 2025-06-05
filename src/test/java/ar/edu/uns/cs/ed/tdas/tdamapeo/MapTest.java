@@ -10,7 +10,6 @@
 package ar.edu.uns.cs.ed.tdas.tdamapeo;
 
 import ar.edu.uns.cs.ed.tdas.excepciones.*;
-import ar.edu.uns.cs.ed.tdas.Entry;
 
 import static org.junit.Assert.*;
 

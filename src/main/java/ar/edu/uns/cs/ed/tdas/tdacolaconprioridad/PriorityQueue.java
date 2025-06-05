@@ -1,6 +1,6 @@
 package ar.edu.uns.cs.ed.tdas.tdacolaconprioridad;
 
-import ar.edu.uns.cs.ed.tdas.Entry;
+import ar.edu.uns.cs.ed.tdas.tdamapeo.Entry;
 
 /**
  * Interface PriorityQueue

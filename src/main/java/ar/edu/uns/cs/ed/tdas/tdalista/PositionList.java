@@ -6,6 +6,7 @@ import ar.edu.uns.cs.ed.tdas.Position;
 import ar.edu.uns.cs.ed.tdas.excepciones.BoundaryViolationException;
 import ar.edu.uns.cs.ed.tdas.excepciones.EmptyListException;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidPositionException;
+import ar.edu.uns.cs.ed.tdas.tdaarbol.TreeNodo;
 
 /**
  * Interface PositionList
@@ -66,9 +67,9 @@ public interface PositionList<E> extends Iterable<E>
 	
 	/**
 	 * Inserta un elemento al final de la lista.
-	 * @param element Elemento a insertar al final de la lista.
+	 * @param root Elemento a insertar al final de la lista.
 	 */
-	public void addLast(E element);
+	public void addLast(E root);
 	
 	/**
 	 * Inserta un elemento luego de la posición pasada por parámatro.

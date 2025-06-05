@@ -1,7 +1,7 @@
 package ar.edu.uns.cs.ed.tdas.tdacolaconprioridad;
 
 import ar.edu.uns.cs.ed.tdas.excepciones.*;
-import ar.edu.uns.cs.ed.tdas.Entry;
+import ar.edu.uns.cs.ed.tdas.tdamapeo.Entry;
 
 import static org.junit.Assert.*;
 
