@@ -159,8 +159,5 @@ public interface Tree<E> extends Iterable<E>
 	 * @throws InvalidPositionException si la posición pasada por parámetro es inválida o corresponde a la raíz (con más de un hijo), o el árbol está vacío.
 	 */
 	public void removeNode (Position<E> p);
-	
-	
-	
 
 }

@@ -20,7 +20,7 @@ public class StackTest {
 
 	private Stack<String> getStack()
 	{
-	  return new PilaConLista<String>();
+	  return new ArregloStack<String>();
 	  
 	 }
 	

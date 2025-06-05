@@ -11,8 +11,7 @@ import ar.edu.uns.cs.ed.tdas.excepciones.InvalidPositionException;
  * Interface PositionList
  * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.
  */
-public interface PositionList<E> extends Iterable<E>
-{
+public interface PositionList<E> extends Iterable<E>{
 	/**
 	 * Consulta la cantidad de elementos de la lista.
 	 * @return Cantidad de elementos de la lista.

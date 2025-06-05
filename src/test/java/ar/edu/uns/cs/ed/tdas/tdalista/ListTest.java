@@ -17,7 +17,7 @@ public class ListTest {
 	 */
 
 	private PositionList<String> getList() {
-		return new ListaDoblementeEnlazada<String>();
+		return new ListaDE<String>();
 	}
 
 	@Before
@@ -753,7 +753,7 @@ public class ListTest {
 		try {
 			l.remove(cursor);
 			fail("Al invocar remove() sobre una lista vacía debería lanzar la excepción InvalidPositionException.");
-		} catch (InvalidPositionException e) {
+		} catch (EmptyListException e) {
 		}
 		// Inserto 5 elementos en la lista.
 		for (i = 1; i < 6; i++)
@@ -900,7 +900,7 @@ public class ListTest {
 		try {
 			l.set(cursor, n1);
 			fail("Al invocar set() sobre una lista vacía debería lanzar la excepción InvalidPositionException");
-		} catch (InvalidPositionException e) {
+		} catch (EmptyListException e) {
 		}
 		// Caso de prueba: muchos sets.
 		for (i = 1; i < 10000; i++)
