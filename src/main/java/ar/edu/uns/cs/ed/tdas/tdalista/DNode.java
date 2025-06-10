@@ -14,14 +14,9 @@ public class DNode<E> implements Position<E>  {
 		elem = elemento;
 		next = sig;
 	}
-    public E getElemento(){
-        return elem;
-    }
+    //Metodos 
     public void setElemento(E elem){
         this.elem=elem;
-    }
-    public DNode<E> getSiguiente(){
-        return next;
     }
     public void setSiguiente(DNode<E> sig){
         next=sig;
@@ -29,6 +24,15 @@ public class DNode<E> implements Position<E>  {
     public void setAnterior(DNode<E> ante){
         prev=ante;
     }
+    // Consultas 
+    public E getElemento(){
+        return elem;
+    }
+    
+    public DNode<E> getSiguiente(){
+        return next;
+    }
+
     public DNode<E> getAnterior(){
         return prev;
     }

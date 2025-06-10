@@ -17,8 +17,8 @@ public class Arbol<E> implements Tree<E> {
 
     //Constructor 
     public Arbol(){
-        cant=0;
-        root=null;
+        cant = 0;
+        root = null;
     }
     //Consultas 
 
@@ -29,12 +29,12 @@ public class Arbol<E> implements Tree<E> {
 
     @Override
     public boolean isEmpty(){
-        return cant==0;
+        return cant == 0;
     }
 
     @Override
     public Iterator<E> iterator() {
-        PositionList<E> lista= new ListaDE<>();
+        PositionList<E> lista = new ListaDE<>();
         preOrdenElementos(root,lista);
         return lista.iterator();
     }
@@ -48,8 +48,8 @@ public class Arbol<E> implements Tree<E> {
 
     @Override
     public E replace(Position<E> v, E e) {
-        TNode<E> nodo= checkPosition(v);
-        E resultado= nodo.element();
+        TNode<E> nodo = checkPosition(v);
+        E resultado = nodo.element();
         nodo.setElement(e);
         return resultado;
     }
@@ -64,8 +64,8 @@ public class Arbol<E> implements Tree<E> {
 
     @Override
     public Position<E> parent(Position<E> v) {
-        TNode<E> nodo= checkPosition(v);
-        if(nodo==root){
+        TNode<E> nodo = checkPosition(v);
+        if(nodo == root){
             throw new BoundaryViolationException("La raiz no tiene un padre");
         }
         return nodo.getPadre();
@@ -73,8 +73,8 @@ public class Arbol<E> implements Tree<E> {
 
     @Override
     public Iterable<Position<E>> children(Position<E> v) {
-        TNode<E> nodo= checkPosition(v);
-        PositionList<Position<E>> list= new ListaDE<>();
+        TNode<E> nodo = checkPosition(v);
+        PositionList<Position<E>> list = new ListaDE<>();
         for(TNode<E> n: nodo.getHijos()){
             list.addLast(n);
         }
@@ -83,7 +83,7 @@ public class Arbol<E> implements Tree<E> {
 
     @Override
     public boolean isInternal(Position<E> v) {
-        TNode<E> nodo= checkPosition(v);
+        TNode<E> nodo = checkPosition(v);
         return !nodo.getHijos().isEmpty();
     }
 
@@ -96,7 +96,7 @@ public class Arbol<E> implements Tree<E> {
     @Override
     public boolean isRoot(Position<E> v) {
         TNode<E> nodo = checkPosition(v);
-        return root== nodo;
+        return root == nodo;
     }
 
     @Override
@@ -104,14 +104,14 @@ public class Arbol<E> implements Tree<E> {
         if (root != null){
             throw new InvalidOperationException("El Arbol ya posee una raiz");
         }
-        root= new TNode<E>(e, null);
+        root = new TNode<E>(e, null);
         cant++;
     }
 
     @Override
     public Position<E> addFirstChild(Position<E> p, E e) {
-        TNode<E> padre= checkPosition(p);
-        TNode<E> hijo= new TNode<E>(e, padre);
+        TNode<E> padre = checkPosition(p);
+        TNode<E> hijo = new TNode<E>(e, padre);
         padre.getHijos().addFirst(hijo);
         cant++;
         return hijo;
@@ -119,8 +119,8 @@ public class Arbol<E> implements Tree<E> {
 
     @Override
     public Position<E> addLastChild(Position<E> p, E e) {
-        TNode<E> padre= checkPosition(p);
-        TNode<E> hijo= new TNode<E>(e, padre);
+        TNode<E> padre = checkPosition(p);
+        TNode<E> hijo = new TNode<E>(e, padre);
         padre.getHijos().addLast(hijo);
         cant++;
         return hijo;
@@ -128,18 +128,18 @@ public class Arbol<E> implements Tree<E> {
 
     @Override
     public Position<E> addBefore(Position<E> p, Position<E> rb, E e) {
-        TNode<E> padre= checkPosition(p);
-        TNode<E> hermanoDerecho= checkPosition(rb);
-        if(hermanoDerecho.getPadre()!=padre){
+        TNode<E> padre = checkPosition(p);
+        TNode<E> hermanoDerecho = checkPosition(rb);
+        if(hermanoDerecho.getPadre()!= padre){
             throw new InvalidPositionException("El padre no es el verdadero ");
         }
         TNode<E> nodo= new TNode<E>(e, padre);
-        Iterator<Position<TNode<E>>> ite= padre.getHijos().positions().iterator();
-        Position<TNode<E>> posBuscada= null;
-        while(ite.hasNext()&& posBuscada==null){
+        Iterator<Position<TNode<E>>> ite = padre.getHijos().positions().iterator();
+        Position<TNode<E>> posBuscada = null;
+        while(ite.hasNext()&& posBuscada == null){
             Position<TNode<E>> n= ite.next();
-            if(n.element()== hermanoDerecho)
-                posBuscada=n;
+            if(n.element() == hermanoDerecho)
+                posBuscada = n;
         }
         padre.getHijos().addBefore(posBuscada,nodo);
         cant++;
@@ -150,15 +150,15 @@ public class Arbol<E> implements Tree<E> {
     public Position<E> addAfter(Position<E> p, Position<E> lb, E e) {
         TNode<E> padre = checkPosition(p);
         TNode<E>  hermIzq = checkPosition(lb);
-        if(hermIzq.getPadre()!= padre)
+        if(hermIzq.getPadre() != padre)
             throw new InvalidPositionException("El padre no es el verdadero Padre");
         TNode<E> nodo = new TNode<>(e, padre);
         Iterator<Position<TNode<E>>> ite = padre.getHijos().positions().iterator();
-        Position<TNode<E>> posBusca= null;
-        while (ite.hasNext() && posBusca==null){
+        Position<TNode<E>> posBusca = null;
+        while (ite.hasNext() && posBusca == null){
             Position<TNode<E>> n = ite.next();
-            if(n.element()==hermIzq)
-                posBusca= n;
+            if(n.element() == hermIzq)
+                posBusca = n;
         }
         padre.getHijos().addAfter(posBusca, nodo);
         cant++;
@@ -191,20 +191,24 @@ public class Arbol<E> implements Tree<E> {
         if(isExternal(nodo)){
             throw new InvalidPositionException("No es un nodo Interno");
         }
-        if( nodo== root){
-            if(nodo.getPadre().getHijos().size()>1){
+        if( nodo == root){
+            if(nodo.getHijos().size()>1){
                 throw new InvalidPositionException("No puedo eliminar la raiz porque tiene muchos hijos");
             }
+            root = root.getHijos().first().element();
+			root.setPadre(null);
+			cant--;
         }
         else{
-            Iterator<Position<TNode<E>>> ite= nodo.getPadre().getHijos().positions().iterator();
-            Position<TNode<E>> posBuscada= null;
-            while (ite.hasNext()&& posBuscada==null){
-                Position<TNode<E>> n= ite.next();
-                if(n.element()==nodo){
-                    posBuscada=n;
+            Iterator<Position<TNode<E>>> ite = nodo.getPadre().getHijos().positions().iterator();
+            Position<TNode<E>> posBuscada = null;
+            while (ite.hasNext()&& posBuscada == null){
+                Position<TNode<E>> n = ite.next();
+                if(n.element() == nodo){
+                    posBuscada = n;
                 }
             }
+            //Pos Buscada es la posicion en la lista del padre , del nodo que pasa por parametro
             for(TNode<E> hijo : nodo.getHijos() ){
                 nodo.getPadre().getHijos().addBefore(posBuscada,hijo);
                 hijo.setPadre(nodo.getPadre());
@@ -217,7 +221,7 @@ public class Arbol<E> implements Tree<E> {
 
     @Override
     public void removeNode(Position<E> p) {
-        TNode<E> nodo= checkPosition(p);
+        TNode<E> nodo = checkPosition(p);
         if(isInternal(nodo)){
             removeInternalNode(p);
         }
@@ -228,8 +232,8 @@ public class Arbol<E> implements Tree<E> {
 
      private void preOrdenElementos(TNode<E> nodo, PositionList<E> l) {
         l.addLast(nodo.element());
-        for(TNode<E> n:nodo.getHijos()){
-            preOrdenElementos(n, l);
+        for(TNode<E> n : nodo.getHijos()){
+            preOrdenElementos(n , l);
         }
     }
      private void preOrdenPositions(TNode<E> nodo, PositionList<Position<E>> reList) {

@@ -29,7 +29,7 @@ public class ListaDE<E> implements PositionList<E> {
 
     @Override
     public boolean isEmpty() {
-        return cant==0;
+        return cant == 0;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ListaDE<E> implements PositionList<E> {
 
     @Override
     public Position<E> next(Position<E> p) {
-        DNode<E> nodo= checkPosition(p);
+        DNode<E> nodo = checkPosition(p);
         if(nodo.getSiguiente()== ultimo)
             throw new BoundaryViolationException("No hay siguiente para la última posición");
         return nodo.getSiguiente();

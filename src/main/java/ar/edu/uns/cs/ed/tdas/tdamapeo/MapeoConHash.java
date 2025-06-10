@@ -26,73 +26,72 @@ public class MapeoConHash<K,V> implements Map<K,V> {
 
     @Override
     public boolean isEmpty() {
-        return cant==0;
+        return cant == 0;
     }
 
     @Override
     public V get(K key) throws InvalidKeyException {
-        V resultado= null;
-        ListaDE<Entrada<K,V>>lista=arry[h(key)];
-        if(key==null){
+        V resultado = null;
+        if(key == null){
             throw new InvalidKeyException("La clave del get es nula");
         }
         else{
-            Iterator<Entrada<K,V>>ite= lista.iterator();
-            boolean encontrada= false;
-            while(ite.hasNext()&&!encontrada){
-                Entrada<K,V> e=ite.next();
+            ListaDE<Entrada<K,V>> lista = arry[hash(key)];
+            Iterator<Entrada<K,V>>ite = lista.iterator();
+            boolean encontrada = false;
+            while(ite.hasNext() && !encontrada){
+                Entrada<K,V> e = ite.next();
                 if(e.getKey().equals(key)){
-                    encontrada=true;
-                    resultado= e.getValue();
+                    encontrada = true;
+                    resultado = e.getValue();
                 }
-            }    
-        }
+            }  
+        }  
         return resultado;
     }
 
     @Override
     public V put(K key, V value) throws InvalidKeyException {
-        V resultado= null;
-        ListaDE<Entrada<K,V>>lista=arry[h(key)];
-        if(key==null){
+        V resultado=null;
+        if(key == null){
             throw new InvalidKeyException("La clave del put es nula");
         }
         else{
-            Iterator<Entrada<K,V>> ite= lista.iterator();
-            boolean encontrada=false;
+            int cubeta= hash(key);
+            Iterator<Entrada<K,V>> ite = arry[cubeta].iterator();
+            boolean encontrada = false;
             while (ite.hasNext() && !encontrada){
-                Entrada<K,V> e= ite.next();
-                if(e.getKey().equals(key)){
-                    encontrada= true;
-                    resultado= e.getValue();
+                Entrada<K,V> e = ite.next();
+                if(e.getKey()==key){
+                    encontrada = true;
+                    resultado = e.getValue();
                     e.setValue(value);
                 }
             }
             if(!encontrada){
-                Entrada<K,V> nueva= new Entrada(key, value);
-                lista.addLast(nueva);
+                Entrada<K,V> nueva = new Entrada(key, value);
+                arry[cubeta].addLast(nueva);
                 cant++;
             }
         }
-
         return resultado;
     }
 
     @Override
     public V remove(K key) throws InvalidKeyException{
-        V resultado= null;
-        ListaDE<Entrada<K,V>>lista=arry[h(key)];
-        if(key==null){
+        V resultado = null;
+        if(key == null){
             throw new InvalidKeyException("La clave del remove es nula");
         }
         else{
-            Iterator<Entrada<K,V>> ite= lista.iterator();
-            boolean encontrada=false;
-            while(ite.hasNext()&&!encontrada){
-                Entrada<K,V> e= ite.next();
-                if(e.getKey()==key){
-                    encontrada=true;
-                    resultado=e.getValue();
+            ListaDE<Entrada<K,V>>lista = arry[hash(key)];
+            Iterator<Entrada<K,V>> ite = lista.iterator();
+            boolean encontrada = false;
+            while(ite.hasNext() && !encontrada){
+                Entrada<K,V> e = ite.next();
+                if(e.getKey() == key){
+                    encontrada = true;
+                    resultado= e.getValue();
                     ite.remove();
                     cant--;
                 }
@@ -132,8 +131,8 @@ public class MapeoConHash<K,V> implements Map<K,V> {
         }
         return entradas;
     }   
-    protected int h(K key){
-        return key.hashCode() % 73;
+    protected int hash(K key){
+        return  Math.abs(key.hashCode() % arry.length);
     } 
     
 }

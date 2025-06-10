@@ -22,7 +22,7 @@ public class DictionaryTest {
 
 	private Dictionary<Integer, Integer> getDictionary() {
 
-		return new DiccionarioHashAbierto<Integer, Integer>();
+		return new DictionaryConHash<Integer, Integer>();
 
 	}
 
