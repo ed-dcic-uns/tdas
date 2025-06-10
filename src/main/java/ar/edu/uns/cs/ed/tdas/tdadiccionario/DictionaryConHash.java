@@ -1,6 +1,8 @@
 package ar.edu.uns.cs.ed.tdas.tdadiccionario;
 
 import ar.edu.uns.cs.ed.tdas.Entry;
+import ar.edu.uns.cs.ed.tdas.Position;
+import ar.edu.uns.cs.ed.tdas.excepciones.InvalidEntryException;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidKeyException;
 import ar.edu.uns.cs.ed.tdas.tdalista.ListaDE;
 import ar.edu.uns.cs.ed.tdas.tdamapeo.Entrada;
@@ -18,7 +20,8 @@ public class DictionaryConHash <K,V> implements Dictionary<K,V> {
         cant=0;
     }
     public int hash(K key ){
-        return key.hashCode() % 73;
+        return Math.abs(key.hashCode() % mapeo.length);
+
     }
 
     @Override
@@ -33,13 +36,16 @@ public class DictionaryConHash <K,V> implements Dictionary<K,V> {
 
     @Override
     public Entry<K, V> find(K key) {
-        if (key == null) 
-            throw new InvalidKeyException("Clave inválida");
         Entry<K,V> resultado=null;
-        int index = hash(key);
-        for (Entry<K, V> entry : mapeo[index]) {
-            if (entry.getKey()==(key)) {
-                resultado= entry;
+        if (key == null){ 
+            throw new InvalidKeyException("Clave inválida");
+        }
+        else{
+            int index = hash(key);
+            for (Entry<K, V> entry : mapeo[index]) {
+                if (entry.getKey()==(key)) {
+                    resultado= entry;
+                }
             }
         }
         return resultado;
@@ -47,26 +53,60 @@ public class DictionaryConHash <K,V> implements Dictionary<K,V> {
 
     @Override
     public Iterable<Entry<K, V>> findAll(K key) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        ListaDE<Entry<K, V>> resultado = new ListaDE<>();
+        if (key == null){
+            throw new InvalidKeyException("Clave inválida");
+        }
+        else{
+        int index = hash(key);
+        for (Entrada<K,V> entry : mapeo[index]) {
+            if (entry.getKey()== key) {
+                resultado.addLast(entry);
+            }
+        }
+        }
+        return resultado;
     }
 
     @Override
     public Entry<K, V> insert(K key, V value) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insert'");
+       if (key == null){
+            throw new InvalidKeyException("Clave inválida");
+        }
+        Entrada<K,V> nueva = new Entrada<>(key, value);
+        int index = hash(key);
+        mapeo[index].addLast(nueva);
+        cant++;
+        return nueva;
     }
 
     @Override
     public Entry<K, V> remove(Entry<K, V> e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if (e == null)
+            throw new InvalidEntryException("Entrada inválida");
+        int index = hash(e.getKey());
+        boolean encontrada = false;
+        for (Position<Entrada<K, V>> pos : mapeo[index].positions()) {
+            if (pos.element().equals(e)) {
+                mapeo[index].remove(pos);
+                cant--;
+                encontrada = true;
+            }
+        }
+        if (!encontrada)
+            throw new InvalidEntryException("La entrada no está en el diccionario");
+        return e;
     }
 
     @Override
     public Iterable<Entry<K, V>> entries() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'entries'");
+        ListaDE<Entry<K, V>> resultado = new ListaDE<>();
+        for (ListaDE<Entrada<K, V>> lista : mapeo) {
+            for (Entry<K, V> e : lista) {
+                resultado.addLast(e);
+            }
+        }
+        return resultado;
     }
     
 }
