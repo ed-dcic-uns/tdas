@@ -270,7 +270,18 @@ public class GraphTests {
 	 */
 	@Test(expected = InvalidVertexException.class)
 	public void replace_nullVertex_throwsIVE() throws InvalidVertexException {
-		graph.replace(null, new Object());
+		Vertex<Object> v = null;
+		graph.replace(v, new Object());
+	}
+
+	/**
+	 * Comprueba que el método replace lanza InvalidVertexException con un
+	 * arco nulo.
+	 */
+	@Test(expected = InvalidEdgeException.class)
+	public void replace_nullEdge_throwsIEE() throws InvalidEdgeException {
+		Edge<Object> e = null;
+		graph.replace(e, new Object());
 	}
 
 	/**
@@ -286,6 +297,20 @@ public class GraphTests {
 	}
 
 	/**
+	 * Comprueba que el método replace retorna correctamente el elemento previo
+	 * en el arco pasado por parámetro.
+	 */
+	@Test
+	public void replace_validEdge_returnsOldElement() throws InvalidEdgeException {
+		Vertex<Object> v1 = graph.insertVertex(new Object());
+		Vertex<Object> v2 = graph.insertVertex(new Object());
+		Edge<Object> e = graph.insertEdge(v1, v2, o1);
+		assertEquals("El método replace no retorna el elemento previo en el arco pasado por parámetro.", o1,
+				graph.replace(e, new Object()));
+
+	}
+
+	/**
 	 * Comprueba que el método replace setea correctamente el nuevo elemento al
 	 * vértice pasado por parámetro.
 	 */
@@ -293,7 +318,20 @@ public class GraphTests {
 	public void replace_validVertex_setsNewElement() throws InvalidVertexException {
 		Vertex<Object> v1 = graph.insertVertex(new Object());
 		graph.replace(v1, o1);
-		assertEquals("El método replace no setea correctamente el nuevo elemento.", o1, v1.element());
+		assertEquals("El método replace no setea correctamente el nuevo elemento del vértice.", o1, v1.element());
+	}
+
+	/**
+	 * Comprueba que el método replace setea correctamente el nuevo elemento al
+	 * arco pasado por parámetro.
+	 */
+	@Test
+	public void replace_validEdge_setsNewElement() throws InvalidEdgeException {
+		Vertex<Object> v1 = graph.insertVertex(new Object());
+		Vertex<Object> v2 = graph.insertVertex(new Object());
+		Edge<Object> e = graph.insertEdge(v1, v2, new Object());
+		graph.replace(e, o1);
+		assertEquals("El método replace no setea correctamente el nuevo elemento del arco.", o1, e.element());
 	}
 
 	/**

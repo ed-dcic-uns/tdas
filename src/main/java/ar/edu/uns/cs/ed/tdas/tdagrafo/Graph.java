@@ -64,6 +64,15 @@ public interface Graph<V,E> {
 	 * @throws InvalidVertexException si el vértice es inválido.
 	 */
 	public V replace(Vertex<V> v, V x);
+
+	/**
+	 * Reemplaza el rótulo de e por un rótulo x.
+	 * @param e Un arco
+	 * @param x Rótulo
+	 * @return El rótulo anterior del arco e al reemplazarlo por un rótulo x.
+	 * @throws InvalidEdgeException si el arco es inválido.
+	 */
+	public E replace(Edge<E> e, E x);
 	
 	/**
 	 * Inserta un nuevo vértice con rótulo x.

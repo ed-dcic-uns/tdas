@@ -136,8 +136,10 @@ public class BinaryTreeTests {
 	@Test
 	public void positions_onlyRoot_iterableSizeEqualsOne() throws InvalidOperationException {
 		binaryTree.createRoot(new Object());
+		Iterator<Position<Object>> it = binaryTree.positions().iterator();
 		int size = 0;
-		for (Position<Object> _ : binaryTree.positions()) {
+		while (it.hasNext()) {
+			it.next();
 			size++;
 		}
 		assertEquals("El método positions retorna una colección iterable con " + size
