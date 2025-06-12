@@ -34,15 +34,17 @@ public class Arbol<E> implements Tree<E> {
 
     @Override
     public Iterator<E> iterator() {
-        PositionList<E> lista = new ListaDE<>();
-        preOrdenElementos(root,lista);
+        PositionList<E> lista = new ListaDE<E>();
+        if(!isEmpty())
+            preOrdenElementos(root,lista);
         return lista.iterator();
     }
     
     @Override
     public Iterable<Position<E>> positions() {
-        PositionList<Position<E>> reList= new ListaDE<Position<E>>();
-        preOrdenPositions(root,reList);
+        PositionList<Position<E>> reList = new ListaDE<Position<E>>();
+        if(!isEmpty())
+            preOrdenPositions(root,reList);
         return reList;
     }
 
@@ -104,8 +106,10 @@ public class Arbol<E> implements Tree<E> {
         if (root != null){
             throw new InvalidOperationException("El Arbol ya posee una raiz");
         }
-        root = new TNode<E>(e, null);
-        cant++;
+        else{
+            root = new TNode<E>(e, null);
+            cant++;
+        }
     }
 
     @Override
