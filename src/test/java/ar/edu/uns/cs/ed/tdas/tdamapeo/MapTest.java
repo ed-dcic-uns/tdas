@@ -1,12 +1,3 @@
-
-/**
- * Class: MapTest
- * @author María Luján Ganuza (mlg@cs.uns.edu.ar)
- *         Estructuras de Datos _ Primer Cuatrimestre 2013
- *         Departamento de Cs. e Ing. de la Computación.
- *  @version: 2.0
- */
-
 package ar.edu.uns.cs.ed.tdas.tdamapeo;
 
 import ar.edu.uns.cs.ed.tdas.excepciones.*;
@@ -200,7 +191,6 @@ public class MapTest {
 		Integer valor, clave, valor_aux, clave_aux;
 		Vector<Vector<Integer>> V= new Vector<Vector<Integer>>(2);
 		Set<Integer> claves= new HashSet<Integer>();
-		Random r= new Random();
 		
 		//Clave inválida
 		try {
@@ -266,13 +256,9 @@ public class MapTest {
         V.add(new Vector<Integer>(10000));
 		try {
 			for (int i=0; i<10000;i++)
-				{clave=r.nextInt(10*(i+1));
-				 while(claves.contains(clave))
-				  	{
-				 	 clave=r.nextInt(10*(i+1));	 
-				 	}
+				{clave=i;
 				 claves.add(clave);
-				 valor=r.nextInt(10000);
+				 valor=i;
 				 V.get(0).add(clave);
 				 V.get(1).add(valor);
 				 s.put(clave, valor);
@@ -305,7 +291,6 @@ public class MapTest {
 	public void put_remove() {
 
 		Integer valor, clave, clave_aux, valor_aux;
-		Random r= new Random();
 		Vector<Vector<Integer>> V= new Vector<Vector<Integer>>(2);
 		Set<Integer> claves= new HashSet<Integer>();
 		
@@ -338,11 +323,9 @@ public class MapTest {
         V.add(new Vector<Integer>(10000));
 		try {
 			for (int i=0; i<10000;i++)
-				{clave=r.nextInt(10*(i+1));
-				 while(claves.contains(clave))
-					clave=r.nextInt(10*(i+1));	 
+				{clave=i; 
 				 claves.add(clave);
-				 valor=r.nextInt(10000);
+				 valor=i;
 				 V.get(0).add(clave);
 				 V.get(1).add(valor);
 				 s.put(clave, valor);
@@ -390,7 +373,6 @@ public class MapTest {
 	  Integer clave,valor;
 	  Set<Integer> claves= new HashSet<Integer>();
 	  Set<Integer> valores= new HashSet<Integer>();
-	  Random r=new Random();
 	  LinkedHashMap<Integer, Integer> entradas= new LinkedHashMap<Integer,Integer>();
 
 	  //Mapeo vacío
@@ -405,13 +387,9 @@ public class MapTest {
         //Insertando 10000 entradas en el mapeo		
     	try {
 			for (int i=0; i<10000;i++)
-				{ clave=r.nextInt(10*(i+1));
-				  while(claves.contains(clave))
-				  	 clave=r.nextInt(10*(i+1));	 
+				{ clave=i;
 			 	  claves.add(clave);
-				  valor=r.nextInt(10000);
-				  while(valores.contains(valor))
-				 	 valor=r.nextInt(10000);	 
+				  valor=i;
 				  valores.add(valor);
 				  entradas.put(clave, valor);
 				  s.put(clave, valor);

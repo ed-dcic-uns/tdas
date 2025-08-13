@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Random;
 import java.util.Set;
 import java.util.Vector;
 
@@ -197,7 +196,6 @@ public class DictionaryTest {
 		Integer valor, clave;
 		Vector<Vector<Integer>> V= new Vector<Vector<Integer>>(2);
 		Set<Integer> claves= new HashSet<Integer>();
-		Random r= new Random();
 		Entry<Integer,Integer> en;
 		boolean esta;
 		
@@ -225,9 +223,9 @@ public class DictionaryTest {
         V.add(new Vector<Integer>(1000));
 		try {
 			for (int i=0; i<1000;i++)
-				{clave=r.nextInt(10*(i+1));
+				{clave=i%300;
 				 claves.add(clave);
-				 valor=r.nextInt(1000);
+				 valor=i;
 				 V.get(0).add(clave);
 				 V.get(1).add(valor);
 				 s.insert(clave, valor);
@@ -290,7 +288,6 @@ public class DictionaryTest {
 		Integer valor, clave;
 		Vector<Vector<Integer>> V= new Vector<Vector<Integer>>(2);
 		Set<Integer> claves= new HashSet<Integer>();
-		Random r= new Random();
 		Iterator<Entry<Integer,Integer>> it;
 		Entry<Integer,Integer> en;
 		boolean esta;
@@ -319,9 +316,9 @@ public class DictionaryTest {
         V.add(new Vector<Integer>(1000));
 		try {
 			for (int i=0; i<1000;i++)
-				{clave=r.nextInt(10*(i+1));
+				{clave=i%300;
 				 claves.add(clave);
-				 valor=r.nextInt(1000);
+				 valor=i;
 				 V.get(0).add(clave);
 				 V.get(1).add(valor);
 				 s.insert(clave, valor);
@@ -361,7 +358,6 @@ public class DictionaryTest {
 		Integer valor, clave;
 		Vector<Vector<Integer>> V= new Vector<Vector<Integer>>(2);
 		Set<Integer> claves= new HashSet<Integer>();
-		Random r= new Random();
 		Entry<Integer,Integer> en=null;
 		boolean esta;
 		
@@ -407,9 +403,9 @@ public class DictionaryTest {
         V.add(new Vector<Integer>(1000));
 		try {
 			for (int i=0; i<1000;i++)
-				{clave=r.nextInt(10*(i+1));
+				{clave=i%300;
 				 claves.add(clave);
-				 valor=r.nextInt(1000);
+				 valor=i;
 				 V.get(0).add(clave);
 				 V.get(1).add(valor);
 				 s.insert(clave, valor);
@@ -454,7 +450,6 @@ public class DictionaryTest {
 		Integer valor, clave;
 		Vector<Vector<Integer>> V= new Vector<Vector<Integer>>(2);
 		Set<Integer> claves= new HashSet<Integer>();
-		Random r= new Random();
 		boolean esta;
 		
 	    //Diccionario vacío
@@ -466,9 +461,9 @@ public class DictionaryTest {
         V.add(new Vector<Integer>(1000));
 		try {
 			for (int i=0; i<1000;i++)
-				{clave=r.nextInt(10*(i+1));
+				{clave=i%300;
 				 claves.add(clave);
-				 valor=r.nextInt(1000);
+				 valor=i;
 				 V.get(0).add(clave);
 				 V.get(1).add(valor);
 				 s.insert(clave, valor);
