@@ -73,7 +73,7 @@ public interface BinaryTree<E> extends Tree<E>
 	 * @param T2 Árbol binario a insertar como hijo derecho de v. 
 	 * @throws InvalidPositionException si la posición pasada por parámetro es inválida o el árbol está vacío, o v no corresponde a una hoja.
 	 */
-	public void attach(Position<E> r, BinaryTree<E> T1, BinaryTree<E> T2);
+	public void attach(Position<E> v, BinaryTree<E> T1, BinaryTree<E> T2);
 	
 }
 
